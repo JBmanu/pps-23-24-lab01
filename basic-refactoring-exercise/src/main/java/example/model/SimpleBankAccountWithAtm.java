@@ -11,16 +11,6 @@ public class SimpleBankAccountWithAtm extends SimpleBankAccount implements BankA
     }
 
     @Override
-    public AccountHolder getHolder() {
-        return super.getHolder();
-    }
-
-    @Override
-    public double getBalance() {
-        return super.getBalance();
-    }
-
-    @Override
     public void deposit(int userID, double amount) {
         super.deposit(userID, amount - this.fee);
     }
