@@ -6,10 +6,10 @@ public class SimpleFeeLogic implements FeeLogic {
     private static final double DEFAULT_FEE = 1.0d;
     private final double fee;
 
-    SimpleFeeLogic(double fee) {
+    public SimpleFeeLogic(double fee) {
         this.fee = fee;
     }
-    SimpleFeeLogic() {
+    public SimpleFeeLogic() {
         this(DEFAULT_FEE);
     }
 
