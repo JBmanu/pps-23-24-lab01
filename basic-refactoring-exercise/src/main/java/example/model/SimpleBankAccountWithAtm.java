@@ -10,6 +10,9 @@ public class SimpleBankAccountWithAtm extends SimpleBankAccount implements BankA
         this.fee = FEE_DEFAULT;
     }
 
+
+
+
     @Override
     public void deposit(int userID, double amount) {
         super.deposit(userID, amount - this.fee);

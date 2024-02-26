@@ -2,13 +2,18 @@ package example.model.fee;
 
 import example.model.balance.BalanceLogic;
 
-public class SimpleFeeLogic implements FeeLogic{
-    private double fee;
+public class SimpleFeeLogic implements FeeLogic {
+    private static final double DEFAULT_FEE = 1.0d;
+    private final double fee;
 
-    SimpleFeeLogic(){
-        this.fee = 1.0d;
+    SimpleFeeLogic(double fee) {
+        this.fee = fee;
+    }
+    SimpleFeeLogic() {
+        this(DEFAULT_FEE);
     }
 
+    @Override
     public double fee() {
         return this.fee;
     }
