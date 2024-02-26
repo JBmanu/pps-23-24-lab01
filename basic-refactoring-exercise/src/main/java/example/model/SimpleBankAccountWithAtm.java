@@ -1,25 +1,43 @@
 package example.model;
 
-public class SimpleBankAccountWithAtm extends SimpleBankAccount implements BankAccount {
-    private static final double FEE_DEFAULT = 1.;
+import example.model.balance.BalanceLogic;
+import example.model.balance.SimpleBalanceLogic;
+import example.model.fee.FeeLogic;
+import example.model.fee.SimpleFeeLogic;
 
-    private double fee;
+public class SimpleBankAccountWithAtm implements BankAccount {
+    private final AccountHolder holder;
+    private final BalanceLogic balanceLogic;
+    private final FeeLogic feeLogic;
 
     public SimpleBankAccountWithAtm(final AccountHolder holder, final double balance) {
-        super(holder, balance);
-        this.fee = FEE_DEFAULT;
+        this.holder = holder;
+        this.balanceLogic = new SimpleBalanceLogic(balance);
+        this.feeLogic = new SimpleFeeLogic();
     }
 
 
+    @Override
+    public AccountHolder getHolder() {
+        return this.holder;
+    }
 
+    @Override
+    public double getBalance() {
+        return this.balanceLogic.balance();
+    }
 
     @Override
     public void deposit(int userID, double amount) {
-        super.deposit(userID, amount - this.fee);
+        if (!this.holder.userEqual(userID)) return;
+        this.balanceLogic.deposit(amount);
+        this.feeLogic.payingFee(this.balanceLogic);
     }
 
     @Override
     public void withdraw(int userID, double amount) {
-        super.withdraw(userID, amount + this.fee);
+        if (!this.holder.userEqual(userID) || !this.balanceLogic.canWithdraw(amount)) return;
+        this.balanceLogic.withdraw(amount);
+        this.feeLogic.payingFee(this.balanceLogic);
     }
 }
