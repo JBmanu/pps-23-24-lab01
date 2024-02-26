@@ -23,10 +23,17 @@ public class SimpleBankAccountWithAtmTest {
     }
 
     @Test
-    void testWithdraw() {
+    void testDeposit() {
         this.bankAccount.deposit(this.accountHolder.getId(), 100);
         this.bankAccount.deposit(this.accountHolder.getId(), 50);
+        assertEquals(148, this.bankAccount.getBalance());
+    }
 
+    @Test
+    void testWrongWithdraw() {
+        this.bankAccount.deposit(this.accountHolder.getId(), 100);
+        this.bankAccount.withdraw(2, 70);
+        assertEquals(99, this.bankAccount.getBalance());
     }
 
 
