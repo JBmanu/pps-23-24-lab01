@@ -41,6 +41,11 @@ public class AccountHolder {
         return this.id;
     }
 
+
+    public boolean userEqual(int userID) {
+        return this.id == userID;
+    }
+
     /**
      * Provides a string representation
      * @return the string representation for an AccountHolder instance
