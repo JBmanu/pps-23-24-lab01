@@ -22,7 +22,7 @@ public class SimpleBankAccountWithAtm extends SimpleBankAccount implements BankA
 
     @Override
     public void deposit(int userID, double amount) {
-        super.deposit(userID, amount + this.fee);
+        super.deposit(userID, amount - this.fee);
     }
 
     @Override
