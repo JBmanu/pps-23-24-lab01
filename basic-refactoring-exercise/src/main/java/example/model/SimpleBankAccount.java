@@ -30,18 +30,14 @@ public class SimpleBankAccount implements BankAccount {
 
     @Override
     public void deposit(final int userID, final double amount) {
-        if (!this.checkUser(userID)) return;
+        if (this.holder.userEqual(userID)) return;
         this.balanceLogic.deposit(amount);
     }
 
     @Override
     public void withdraw(final int userID, final double amount) {
-        if (!this.checkUser(userID) || !this.balanceLogic.canWithdraw(amount)) return;
+        if (!this.holder.userEqual(userID) || !this.balanceLogic.canWithdraw(amount)) return;
         this.balanceLogic.withdraw(amount);
 
-    }
-
-    private boolean checkUser(final int id) {
-        return this.holder.getId() == id;
     }
 }
