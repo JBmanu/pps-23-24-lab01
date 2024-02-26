@@ -10,7 +10,7 @@ import example.model.balance.SimpleBalanceLogic;
  */
 public class SimpleBankAccount implements BankAccount {
 
-    private BalanceLogic balanceLogic;
+    private final BalanceLogic balanceLogic;
     private final AccountHolder holder;
 
     public SimpleBankAccount(final AccountHolder holder, final double balance) {
