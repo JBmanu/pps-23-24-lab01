@@ -30,7 +30,7 @@ public class SimpleBankAccount implements BankAccount {
 
     @Override
     public void deposit(final int userID, final double amount) {
-        if (this.holder.userEqual(userID)) return;
+        if (!this.holder.userEqual(userID)) return;
         this.balanceLogic.deposit(amount);
     }
 
