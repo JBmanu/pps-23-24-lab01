@@ -2,6 +2,7 @@ package example.model.balance;
 
 public class SimpleBalanceLogic implements BalanceLogic {
     private static final double DEFAULT_BALANCE = 0.0d;
+    private static final double MIN_BALANCE_FOR_WITHDRAW = 0.0d;
     private double balance;
 
     public SimpleBalanceLogic(double balance) {
@@ -24,5 +25,10 @@ public class SimpleBalanceLogic implements BalanceLogic {
     @Override
     public void withdraw(double amount) {
         this.balance -= amount;
+    }
+
+    @Override
+    public boolean canWithdraw(double amount) {
+        return this.balance >= amount;
     }
 }

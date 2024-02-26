@@ -1,5 +1,8 @@
 package example.model;
 
+import example.model.balance.BalanceLogic;
+import example.model.balance.SimpleBalanceLogic;
+
 /**
  * This class represent a particular instance of a BankAccount.
  * In particular, a Simple Bank Account allows always the deposit
@@ -7,39 +10,35 @@ package example.model;
  */
 public class SimpleBankAccount implements BankAccount {
 
-    private double balance;
+    private BalanceLogic balanceLogic;
     private final AccountHolder holder;
 
     public SimpleBankAccount(final AccountHolder holder, final double balance) {
         this.holder = holder;
-        this.balance = balance;
+        this.balanceLogic = new SimpleBalanceLogic(balance);
     }
+
     @Override
-    public AccountHolder getHolder(){
+    public AccountHolder getHolder() {
         return this.holder;
     }
 
     @Override
     public double getBalance() {
-        return this.balance;
+        return this.balanceLogic.balance();
     }
 
     @Override
     public void deposit(final int userID, final double amount) {
-        if (checkUser(userID)) {
-            this.balance += amount;
-        }
+        if (!this.checkUser(userID)) return;
+        this.balanceLogic.deposit(amount);
     }
 
     @Override
     public void withdraw(final int userID, final double amount) {
-        if (checkUser(userID) && isWithdrawAllowed(amount)) {
-            this.balance -= amount;
-        }
-    }
+        if (!this.checkUser(userID) || !this.balanceLogic.canWithdraw(amount)) return;
+        this.balanceLogic.withdraw(amount);
 
-    private boolean isWithdrawAllowed(final double amount){
-        return this.balance >= amount;
     }
 
     private boolean checkUser(final int id) {

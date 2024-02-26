@@ -6,4 +6,6 @@ public interface BalanceLogic {
 
     void deposit(double amount);
     void withdraw(double amount);
+
+    boolean canWithdraw(double amount);
 }
