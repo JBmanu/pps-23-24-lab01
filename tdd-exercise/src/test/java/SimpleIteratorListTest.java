@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SimpleIteratorListTest {
+    private static final int EMPTY_LIST = 0;
+
     private IteratorList iteratorList = new SimpleIteratorList();
 
     @BeforeEach
@@ -17,8 +19,9 @@ public class SimpleIteratorListTest {
     @Test
     public void testEmpty() {
         assertTrue(this.iteratorList.isEmpty());
-        assertEquals(0, this.iteratorList.size());
+        assertEquals(EMPTY_LIST, this.iteratorList.size());
     }
+
 
 
 
