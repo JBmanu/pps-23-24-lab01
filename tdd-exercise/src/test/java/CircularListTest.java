@@ -98,6 +98,15 @@ public class CircularListTest {
         assertEquals(ZERO_VAlUE, this.circularList.previous());
     }
 
+    @Test
+    public void testCycleFeatureWithNext() {
+        this.addElementsInOrderInList(THREE_ELEMENTS);
 
+        assertEquals(THREE_ELEMENTS, this.circularList.size());
+        assertEquals(ZERO_VAlUE, this.circularList.next());
+        assertEquals(ONE_VAlUE, this.circularList.next());
+        assertEquals(TWO_VAlUE, this.circularList.next());
+        assertEquals(ZERO_VAlUE, this.circularList.next());
+    }
 
 }
