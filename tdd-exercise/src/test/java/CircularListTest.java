@@ -34,7 +34,7 @@ public class CircularListTest {
     }
 
     @Test
-    public void testAddElementInListAndReadValue() {
+    public void testAddElementAndReadNext() {
         this.circularList.add(0);
         assertFalse(this.circularList.isEmpty());
         assertEquals(1, this.circularList.size());
