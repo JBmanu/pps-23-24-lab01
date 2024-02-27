@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import tdd.CircularList;
 import tdd.SimpleCircularList;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -32,10 +34,12 @@ public class CircularListTest {
     }
 
     @Test
-    public void testAddElementInList() {
+    public void testAddElementInListAndReadValue() {
         this.circularList.add(0);
         assertFalse(this.circularList.isEmpty());
         assertEquals(1, this.circularList.size());
+        assertEquals(Optional.of(0), this.circularList.next());
+
     }
 
 
