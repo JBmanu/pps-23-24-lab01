@@ -44,6 +44,11 @@ public class CircularListTest {
     }
 
     @Test
+    public void testNextWhenEmptyList() {
+        assertEquals(Optional.empty(), this.circularList.next());
+    }
+
+    @Test
     public void testAddElementAndReadNext() {
         this.addElementsInOrderInList(ONE_ELEMENT);
 
