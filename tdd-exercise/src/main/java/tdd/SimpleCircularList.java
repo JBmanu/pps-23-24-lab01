@@ -1,38 +1,51 @@
 package tdd;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class SimpleCircularList implements CircularList {
-    private Optional<Integer> element;
+    private static final int EMPTY_LIST = 0;
+
+    private final List<Optional<Integer>> elements;
+    private int index;
+
+    public SimpleCircularList() {
+        this.elements = new ArrayList<>();
+        this.index = 0;
+    }
 
     @Override
     public void add(int element) {
-        this.element = Optional.of(element);
+        this.elements.add(Optional.of(element));
     }
 
     @Override
     public int size() {
-        return this.element.isPresent() ? 1 : 0;
+        return this.elements.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return this.element.isEmpty();
+        return this.size() == EMPTY_LIST;
     }
 
     @Override
     public Optional<Integer> next() {
-        return this.element;
+        this.index = this.index % this.size();
+        return this.elements.get(this.index++);
     }
 
     @Override
     public Optional<Integer> previous() {
-        return this.element;
+        this.index = this.index == 0 ? this.size() : this.index;
+        this.index = (this.index - 1) % this.size();
+        System.out.println("index: " + this.index);
+        return this.elements.get(this.index);
     }
 
     @Override
     public void reset() {
-        this.element = Optional.empty();
+        this.elements.clear();
     }
 }

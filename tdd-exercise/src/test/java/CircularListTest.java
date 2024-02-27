@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import tdd.CircularList;
 import tdd.SimpleCircularList;
 
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,7 +45,7 @@ public class CircularListTest {
     }
 
     @Test
-    public void testAddElementAndReadPrev() {
+    public void testAddElementAndReadPrevious() {
         this.circularList.add(0);
 
         assertFalse(this.circularList.isEmpty());
@@ -62,6 +64,29 @@ public class CircularListTest {
         assertEquals(0, this.circularList.size());
     }
 
+    @Test
+    public void testAddThreeElementsAndReadThreeNext() {
+        this.circularList.add(0);
+        this.circularList.add(1);
+        this.circularList.add(2);
+
+        assertEquals(3, this.circularList.size());
+        assertEquals(Optional.of(0), this.circularList.next());
+        assertEquals(Optional.of(1), this.circularList.next());
+        assertEquals(Optional.of(2), this.circularList.next());
+    }
+
+    @Test
+    public void testAddThreeElementsAndReadThreePrevious() {
+        this.circularList.add(0);
+        this.circularList.add(1);
+        this.circularList.add(2);
+
+        assertEquals(3, this.circularList.size());
+        assertEquals(Optional.of(2), this.circularList.previous());
+        assertEquals(Optional.of(1), this.circularList.previous());
+        assertEquals(Optional.of(0), this.circularList.previous());
+    }
 
 
 
