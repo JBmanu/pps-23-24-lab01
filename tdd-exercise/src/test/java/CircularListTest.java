@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import tdd.CircularList;
 import tdd.SimpleCircularList;
 
-import java.util.ArrayList;
-import java.util.ListIterator;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,12 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * The test suite for testing the CircularList implementation
  */
 public class CircularListTest {
+    private static final int ONE_ELEMENT = 1;
+    private static final int THREE_ELEMENTS = 3;
+
     private CircularList circularList;
 
 
     //TODO: test implementation
     @Disabled
-    @Test public void testTodo(){
+    @Test
+    public void testTodo() {
         Assertions.fail();
     }
 
@@ -37,7 +39,7 @@ public class CircularListTest {
 
     @Test
     public void testAddElementAndReadNext() {
-        this.circularList.add(0);
+        this.addElementsInOrderInList(ONE_ELEMENT);
 
         assertFalse(this.circularList.isEmpty());
         assertEquals(1, this.circularList.size());
@@ -46,7 +48,7 @@ public class CircularListTest {
 
     @Test
     public void testAddElementAndReadPrevious() {
-        this.circularList.add(0);
+        this.addElementsInOrderInList(ONE_ELEMENT);
 
         assertFalse(this.circularList.isEmpty());
         assertEquals(1, this.circularList.size());
@@ -55,7 +57,8 @@ public class CircularListTest {
 
     @Test
     public void testResetList() {
-        this.circularList.add(0);
+        this.addElementsInOrderInList(ONE_ELEMENT);
+
         assertFalse(this.circularList.isEmpty());
         assertEquals(1, this.circularList.size());
 
@@ -64,13 +67,16 @@ public class CircularListTest {
         assertEquals(0, this.circularList.size());
     }
 
+    private void addElementsInOrderInList(final int countElements) {
+        for (int i = 0; i < countElements; i++)
+            this.circularList.add(i);
+    }
+
     @Test
     public void testAddThreeElementsAndReadThreeNext() {
-        this.circularList.add(0);
-        this.circularList.add(1);
-        this.circularList.add(2);
+        this.addElementsInOrderInList(THREE_ELEMENTS);
 
-        assertEquals(3, this.circularList.size());
+        assertEquals(THREE_ELEMENTS, this.circularList.size());
         assertEquals(Optional.of(0), this.circularList.next());
         assertEquals(Optional.of(1), this.circularList.next());
         assertEquals(Optional.of(2), this.circularList.next());
@@ -78,16 +84,13 @@ public class CircularListTest {
 
     @Test
     public void testAddThreeElementsAndReadThreePrevious() {
-        this.circularList.add(0);
-        this.circularList.add(1);
-        this.circularList.add(2);
+        this.addElementsInOrderInList(THREE_ELEMENTS);
 
-        assertEquals(3, this.circularList.size());
+        assertEquals(THREE_ELEMENTS, this.circularList.size());
         assertEquals(Optional.of(2), this.circularList.previous());
         assertEquals(Optional.of(1), this.circularList.previous());
         assertEquals(Optional.of(0), this.circularList.previous());
     }
-
 
 
 }

@@ -38,9 +38,8 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        this.index = this.index == 0 ? this.size() : this.index;
+        if (this.index == 0) this.index = this.size();
         this.index = (this.index - 1) % this.size();
-        System.out.println("index: " + this.index);
         return this.elements.get(this.index);
     }
 
