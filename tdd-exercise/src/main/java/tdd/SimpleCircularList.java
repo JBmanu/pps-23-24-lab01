@@ -1,26 +1,29 @@
 package tdd;
 
+import java.util.List;
 import java.util.Optional;
 
 public class SimpleCircularList implements CircularList {
+    private Optional<Integer> element;
+
     @Override
     public void add(int element) {
-
+        this.element = Optional.of(element);
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.element.isPresent() ? 1 : 0;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.element.isEmpty();
     }
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        return this.element;
     }
 
     @Override
