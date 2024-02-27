@@ -28,7 +28,7 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        return this.element;
     }
 
     @Override

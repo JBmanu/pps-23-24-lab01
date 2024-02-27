@@ -36,12 +36,20 @@ public class CircularListTest {
     @Test
     public void testAddElementAndReadNext() {
         this.circularList.add(0);
+
         assertFalse(this.circularList.isEmpty());
         assertEquals(1, this.circularList.size());
         assertEquals(Optional.of(0), this.circularList.next());
-
     }
 
+    @Test
+    public void testAddElementAndReadPrev() {
+        this.circularList.add(0);
+
+        assertFalse(this.circularList.isEmpty());
+        assertEquals(1, this.circularList.size());
+        assertEquals(Optional.of(0), this.circularList.previous());
+    }
 
 
 
