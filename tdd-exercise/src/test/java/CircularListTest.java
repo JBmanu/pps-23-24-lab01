@@ -51,6 +51,17 @@ public class CircularListTest {
         assertEquals(Optional.of(0), this.circularList.previous());
     }
 
+    @Test
+    public void testResetList() {
+        this.circularList.add(0);
+        assertFalse(this.circularList.isEmpty());
+        assertEquals(1, this.circularList.size());
+
+        this.circularList.reset();
+        assertTrue(this.circularList.isEmpty());
+        assertEquals(0, this.circularList.size());
+    }
+
 
 
 

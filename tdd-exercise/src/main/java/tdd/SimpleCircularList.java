@@ -33,6 +33,6 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public void reset() {
-
+        this.element = Optional.empty();
     }
 }
