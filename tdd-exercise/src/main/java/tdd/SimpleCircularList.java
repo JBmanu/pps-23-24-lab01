@@ -40,6 +40,7 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
+        if (this.size() == EMPTY_LIST) return Optional.empty();
         if (this.index == ZERO_INDEX) this.index = this.size();
         this.index = (--this.index) % this.size();
         return this.elements.get(this.index);
