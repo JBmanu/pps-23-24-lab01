@@ -62,7 +62,19 @@ public class CircularListTest {
     }
 
     @Test
-    public void testResetList() {
+    public void testAddThreeElementAndResetList() {
+        this.addElementsInOrderInList(THREE_ELEMENTS);
+
+        assertFalse(this.circularList.isEmpty());
+        assertEquals(THREE_ELEMENTS, this.circularList.size());
+
+        this.circularList.reset();
+        assertTrue(this.circularList.isEmpty());
+        assertEquals(EMPTY_LIST, this.circularList.size());
+    }
+
+    @Test
+    public void testAddOneElementAndResetList() {
         this.addElementsInOrderInList(ONE_ELEMENT);
 
         assertFalse(this.circularList.isEmpty());
