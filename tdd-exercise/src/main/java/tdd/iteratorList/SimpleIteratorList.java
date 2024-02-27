@@ -15,7 +15,7 @@ public class SimpleIteratorList implements IteratorList {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return true;
     }
 
     @Override
