@@ -2,29 +2,31 @@ package tdd.iteratorList;
 
 import tdd.SimpleCircularList;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 public class SimpleIteratorList implements IteratorList {
-    private Optional<Integer> element;
+    private final List<Optional<Integer>> elements;
 
     public SimpleIteratorList() {
-        this.element = Optional.empty();
+        this.elements = new ArrayList<>();
     }
 
     @Override
     public void add(int element) {
-        this.element = Optional.of(element);
+        this.elements.add(Optional.of(element));
     }
 
     @Override
     public int size() {
-        return this.element.isEmpty() ? 0 : 1;
+        return this.elements.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return this.element.isEmpty();
+        return this.elements.isEmpty();
     }
 
     @Override

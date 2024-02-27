@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleIteratorListTest {
     private static final int EMPTY_LIST = 0;
-
-    private static final int ELEMENT_ZERO = 0;
+    private static final int INITIAL_VALUE = 0;
     private static final int ONE_ELEMENT = 1;
+    private static final int THREE_ELEMENT = 3;
 
     private static final Optional<Integer> ZERO_OPTIONAL_VALUE = Optional.of(0);
 
@@ -28,14 +28,26 @@ public class SimpleIteratorListTest {
         assertEquals(EMPTY_LIST, this.iteratorList.size());
     }
 
+    private void addElementsInOrderInList(final int quantity) {
+        for (int i = INITIAL_VALUE; i < quantity; i++)
+            this.iteratorList.add(i);
+    }
+
     @Test
     public void testAddElementInList() {
-        this.iteratorList.add(ELEMENT_ZERO);
+        this.addElementsInOrderInList(ONE_ELEMENT);
 
         assertFalse(this.iteratorList.isEmpty());
         assertEquals(ONE_ELEMENT, this.iteratorList.size());
     }
 
+    @Test
+    public void testAddThreeElements() {
+        this.addElementsInOrderInList(THREE_ELEMENT);
+
+        assertFalse(this.iteratorList.isEmpty());
+        assertEquals(THREE_ELEMENT, this.iteratorList.size());
+    }
 
 
 
