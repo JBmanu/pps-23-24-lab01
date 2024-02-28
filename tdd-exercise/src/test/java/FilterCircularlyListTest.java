@@ -49,7 +49,8 @@ public class FilterCircularlyListTest {
     @Test
     public void testFilterNextWhereListContainElement() {
         this.addElementInOrderInList(THREE_ELEMENT);
-        final Predicate<Integer> predicate = element -> element.equals(0);
+        final int elementZero = 0;
+        final Predicate<Integer> predicate = element -> element.equals(elementZero);
 
         assertEquals(Optional.of(0), this.filterCircularlyList.filterNext(predicate));
     }
@@ -57,10 +58,13 @@ public class FilterCircularlyListTest {
     @Test
     public void testFilterNextWhereListNotContainElement() {
         this.addElementInOrderInList(THREE_ELEMENT);
-        final Predicate<Integer> predicate = element -> element.equals(5);
+        final int elementFive = 5;
+        final Predicate<Integer> predicate = element -> element.equals(elementFive);
 
         assertEquals(Optional.empty(), this.filterCircularlyList.filterNext(predicate));
     }
+
+
 
 
 
