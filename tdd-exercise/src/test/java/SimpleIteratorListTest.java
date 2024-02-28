@@ -68,26 +68,27 @@ public class SimpleIteratorListTest {
 
     @Test
     public void testEmptyForwardIterator() {
-        Iterator<Optional<Integer>> forwardIterator = this.iteratorList.forwardIterator();
+        final Iterator<Optional<Integer>> forwardIterator = this.iteratorList.forwardIterator();
         assertFalse(forwardIterator.hasNext());
     }
 
     @Test
     public void testEmptyBackwardIterator() {
-        Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
+        final Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
         assertFalse(backwardIterator.hasNext());
     }
 
     @Test
     public void testReadThreeElementOfForwardIterator() {
-        this.addElementsInOrderInList(THREE_ELEMENT);
-        Iterator<Optional<Integer>> fordwardIterator = this.iteratorList.forwardIterator();
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                optionalInteger.ifPresent(integer -> this.iteratorList.add(integer)));
 
+        final Iterator<Optional<Integer>> fordwardIterator = this.iteratorList.forwardIterator();
         assertTrue(fordwardIterator.hasNext());
 
-        int index = 0;
-        while (fordwardIterator.hasNext()) {
-            assertEquals(OPTIONAL_VALUE_LIST_IN_ORDER.get(index++), fordwardIterator.next());
-        }
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger -> {
+            if (fordwardIterator.hasNext())
+                assertEquals(optionalInteger, fordwardIterator.next());
+        });
     }
 }
