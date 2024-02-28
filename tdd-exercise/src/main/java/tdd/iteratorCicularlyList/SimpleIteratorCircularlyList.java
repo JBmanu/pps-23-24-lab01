@@ -1,11 +1,11 @@
-package tdd.cicularlyIteratorList;
+package tdd.iteratorCicularlyList;
 
 import java.util.*;
 
-public class SimpleCircularlyIteratorList implements CircularlyIteratorList {
+public class SimpleIteratorCircularlyList implements IteratorCircularlyList {
     private final List<Optional<Integer>> elements;
 
-    public SimpleCircularlyIteratorList() {
+    public SimpleIteratorCircularlyList() {
         this.elements = new ArrayList<>();
     }
 
