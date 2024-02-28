@@ -15,7 +15,7 @@ public class SimpleFilterCircularlyList implements FilterCircularlyList {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return true;
     }
 
     @Override
