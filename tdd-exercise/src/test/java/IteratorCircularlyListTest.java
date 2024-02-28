@@ -7,7 +7,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SimpleIteratorCircularlyListTest {
+public class IteratorCircularlyListTest {
     private static final int EMPTY_LIST = 0;
     private static final int INITIAL_FOR_VALUE = 0;
     private static final int ONE_ELEMENT = 1;
