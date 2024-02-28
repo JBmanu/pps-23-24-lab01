@@ -1,7 +1,5 @@
 package tdd.iteratorList;
 
-import tdd.SimpleCircularList;
-
 import java.util.*;
 
 public class SimpleIteratorList implements IteratorList {
@@ -28,7 +26,7 @@ public class SimpleIteratorList implements IteratorList {
 
     @Override
     public Iterator<Optional<Integer>> forwardIterator() {
-        return this.elements.stream().iterator();
+        return this.elements.iterator();
     }
 
     @Override

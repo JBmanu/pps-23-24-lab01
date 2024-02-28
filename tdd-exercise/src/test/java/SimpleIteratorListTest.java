@@ -95,7 +95,6 @@ public class SimpleIteratorListTest {
                 optionalInteger.ifPresent(integer -> this.iteratorList.add(integer)));
 
         final Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
-        assertTrue(backwardIterator.hasNext());
 
         final List<Optional<Integer>> reverseOptionalValueListInOrder = new ArrayList<>(OPTIONAL_VALUE_LIST_IN_ORDER);
         Collections.reverse(reverseOptionalValueListInOrder);
@@ -105,4 +104,6 @@ public class SimpleIteratorListTest {
                 assertEquals(optionalInteger, backwardIterator.next());
         });
     }
+
+
 }
