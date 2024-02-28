@@ -49,6 +49,9 @@ public class SimpleIteratorListTest {
         assertEquals(THREE_ELEMENT, this.iteratorList.size());
     }
 
-
+    @Test
+    public void testCanCreateForwardIterator() {
+        assertNotEquals(null, this.iteratorList.forwardIterator());
+    }
 
 }

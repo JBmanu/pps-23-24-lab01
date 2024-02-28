@@ -30,12 +30,12 @@ public class SimpleIteratorList implements IteratorList {
     }
 
     @Override
-    public Iterator forwardIterator() {
-        return null;
+    public Iterator<Optional<Integer>> forwardIterator() {
+        return this.elements.stream().iterator();
     }
 
     @Override
-    public Iterator backwardIterator() {
+    public Iterator<Optional<Integer>> backwardIterator() {
         return null;
     }
 }

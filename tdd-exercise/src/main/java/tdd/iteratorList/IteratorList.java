@@ -1,6 +1,7 @@
 package tdd.iteratorList;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 public interface IteratorList {
 
@@ -10,9 +11,9 @@ public interface IteratorList {
 
     boolean isEmpty();
 
-    Iterator forwardIterator();
+    Iterator<Optional<Integer>> forwardIterator();
 
-    Iterator backwardIterator();
+    Iterator<Optional<Integer>> backwardIterator();
 
 
 }
