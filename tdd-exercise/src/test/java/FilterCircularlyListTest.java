@@ -86,13 +86,32 @@ public class FilterCircularlyListTest {
         final Predicate<Integer> firstPredicate = element -> (element % multipleOfTwo) == trueMultiple;
 
         for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
-            assertEquals(Optional.of(i * multipleOfTwo), this.filterCircularlyList.filterNext(firstPredicate));
+            assertEquals(Optional.of(i * multipleOfTwo),
+                    this.filterCircularlyList.filterNext(firstPredicate));
 
         final int multipleOfThree = 3;
         final Predicate<Integer> secondPredicate = element -> (element % multipleOfThree) == trueMultiple;
 
-        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
-            assertEquals(Optional.of(i * multipleOfThree), this.filterCircularlyList.filterNext(secondPredicate));
+        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++) {
+            assertEquals(Optional.of(i * multipleOfThree),
+                    this.filterCircularlyList.filterNext(secondPredicate));
+            System.out.println("INDEX: " + i);
+        }
+    }
+
+    @Test
+    public void testTwoDifferentFilterNextInDisorder() {
+        this.addElementInOrderInList(EIGHT_ELEMENT);
+
+        final int multipleOfTwo = 2;
+        final int trueMultiple = 0;
+        final Predicate<Integer> firstPredicate = element -> (element % multipleOfTwo) == trueMultiple;
+
+        final int multipleOfThree = 3;
+        final Predicate<Integer> secondPredicate = element -> (element % multipleOfThree) == trueMultiple;
+
+        assertEquals(Optional.of(0), this.filterCircularlyList.filterNext(firstPredicate));
+        assertEquals(Optional.of(0), this.filterCircularlyList.filterNext(secondPredicate));
     }
 
 }
