@@ -2,10 +2,7 @@ package tdd.iteratorList;
 
 import tdd.SimpleCircularList;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class SimpleIteratorList implements IteratorList {
     private final List<Optional<Integer>> elements;
@@ -36,6 +33,8 @@ public class SimpleIteratorList implements IteratorList {
 
     @Override
     public Iterator<Optional<Integer>> backwardIterator() {
-        return this.elements.stream().iterator();
+        List<Optional<Integer>> reverseElements = new ArrayList<>(this.elements);
+        Collections.reverse(reverseElements);
+        return reverseElements.iterator();
     }
 }

@@ -3,9 +3,7 @@ import org.junit.jupiter.api.Test;
 import tdd.iteratorList.IteratorList;
 import tdd.iteratorList.SimpleIteratorList;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -84,11 +82,27 @@ public class SimpleIteratorListTest {
                 optionalInteger.ifPresent(integer -> this.iteratorList.add(integer)));
 
         final Iterator<Optional<Integer>> fordwardIterator = this.iteratorList.forwardIterator();
-        assertTrue(fordwardIterator.hasNext());
 
         OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger -> {
             if (fordwardIterator.hasNext())
                 assertEquals(optionalInteger, fordwardIterator.next());
+        });
+    }
+
+    @Test
+    public void testReadThreeElementOfBackwardIterator() {
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                optionalInteger.ifPresent(integer -> this.iteratorList.add(integer)));
+
+        final Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
+        assertTrue(backwardIterator.hasNext());
+
+        final List<Optional<Integer>> reverseOptionalValueListInOrder = new ArrayList<>(OPTIONAL_VALUE_LIST_IN_ORDER);
+        Collections.reverse(reverseOptionalValueListInOrder);
+
+        reverseOptionalValueListInOrder.forEach(optionalInteger -> {
+            if (backwardIterator.hasNext())
+                assertEquals(optionalInteger, backwardIterator.next());
         });
     }
 }
