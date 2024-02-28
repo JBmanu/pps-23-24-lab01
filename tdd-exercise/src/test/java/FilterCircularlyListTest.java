@@ -77,4 +77,22 @@ public class FilterCircularlyListTest {
             assertEquals(Optional.of(i * multiple), this.filterCircularlyList.filterNext(predicate));
     }
 
+    @Test
+    public void testTwoDifferentFilterNextInOrder() {
+        this.addElementInOrderInList(EIGHT_ELEMENT);
+
+        final int multipleOfTwo = 2;
+        final int trueMultiple = 0;
+        final Predicate<Integer> firstPredicate = element -> (element % multipleOfTwo) == trueMultiple;
+
+        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
+            assertEquals(Optional.of(i * multipleOfTwo), this.filterCircularlyList.filterNext(firstPredicate));
+
+        final int multipleOfThree = 3;
+        final Predicate<Integer> secondPredicate = element -> (element % multipleOfThree) == trueMultiple;
+
+        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
+            assertEquals(Optional.of(i * multipleOfThree), this.filterCircularlyList.filterNext(secondPredicate));
+    }
+
 }

@@ -33,6 +33,6 @@ public class SimpleFilterCircularlyList implements FilterCircularlyList {
     @Override
     public Optional<Integer> filterNext(final Predicate<Integer> predicate) {
         List<Integer> list = this.elements.stream().filter(predicate).toList();
-        return list.isEmpty() ? Optional.empty() : Optional.of(list.get(this.index++ % this.size()));
+        return list.isEmpty() ? Optional.empty() : Optional.of(list.get(this.index++ % list.size()));
     }
 }
