@@ -47,7 +47,21 @@ public class SimpleCircularlyIteratorList implements IteratorList {
     public Iterator<Optional<Integer>> backwardIterator() {
         List<Optional<Integer>> reverseElements = new ArrayList<>(this.elements);
         Collections.reverse(reverseElements);
-        return reverseElements.iterator();
+        return new Iterator<>() {
+            private static final int INITIAL_INDEX = 0;
+            private final List<Optional<Integer>> backwardElements = new ArrayList<>(reverseElements);
+            private int index = INITIAL_INDEX;
+
+            @Override
+            public boolean hasNext() {
+                return !this.backwardElements.isEmpty();
+            }
+
+            @Override
+            public Optional<Integer> next() {
+                return this.backwardElements.get(this.index++ % this.backwardElements.size());
+            }
+        };
     }
 
 }

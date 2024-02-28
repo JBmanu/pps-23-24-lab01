@@ -116,4 +116,20 @@ public class SimpleCircularlyIteratorListTest {
         });
         assertEquals(ZERO_OPTIONAL_VALUE, fordwardIterator.next());
     }
+
+    @Test
+    public void testFeatureCircularlyBackwardIterator() {
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                optionalInteger.ifPresent(integer -> this.iteratorList.add(integer)));
+
+        final Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
+        final List<Optional<Integer>> reverseOptionalValueListInOrder = new ArrayList<>(OPTIONAL_VALUE_LIST_IN_ORDER);
+
+        Collections.reverse(reverseOptionalValueListInOrder);
+        reverseOptionalValueListInOrder.forEach(optionalInteger -> {
+            if (backwardIterator.hasNext())
+                assertEquals(optionalInteger, backwardIterator.next());
+        });
+        assertEquals(TWO_OPTIONAL_VALUE, backwardIterator.next());
+    }
 }
