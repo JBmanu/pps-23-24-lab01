@@ -163,4 +163,14 @@ public class SimpleCircularlyIteratorListTest {
         for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
             assertEquals(ZERO_OPTIONAL_VALUE, forwardIterator.next());
     }
+
+    @Test
+    public void testFeatureCircularlyWithSingleElementInBackwardIterator() {
+        this.addElementsInOrderInList(ONE_ELEMENT);
+
+        Iterator<Optional<Integer>> forwardIterator = this.iteratorList.backwardIterator();
+
+        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
+            assertEquals(ZERO_OPTIONAL_VALUE, forwardIterator.next());
+    }
 }
