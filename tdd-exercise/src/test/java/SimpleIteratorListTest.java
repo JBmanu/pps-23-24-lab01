@@ -16,7 +16,6 @@ public class SimpleIteratorListTest {
     private static final Optional<Integer> ZERO_OPTIONAL_VALUE = Optional.of(0);
     private static final Optional<Integer> ONE_OPTIONAL_VALUE = Optional.of(1);
     private static final Optional<Integer> TWO_OPTIONAL_VALUE = Optional.of(2);
-
     private static final List<Optional<Integer>> OPTIONAL_VALUE_LIST_IN_ORDER =
             List.of(ZERO_OPTIONAL_VALUE, ONE_OPTIONAL_VALUE, TWO_OPTIONAL_VALUE);
 
@@ -95,15 +94,13 @@ public class SimpleIteratorListTest {
                 optionalInteger.ifPresent(integer -> this.iteratorList.add(integer)));
 
         final Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
-
         final List<Optional<Integer>> reverseOptionalValueListInOrder = new ArrayList<>(OPTIONAL_VALUE_LIST_IN_ORDER);
-        Collections.reverse(reverseOptionalValueListInOrder);
 
+        Collections.reverse(reverseOptionalValueListInOrder);
         reverseOptionalValueListInOrder.forEach(optionalInteger -> {
             if (backwardIterator.hasNext())
                 assertEquals(optionalInteger, backwardIterator.next());
         });
     }
-
 
 }

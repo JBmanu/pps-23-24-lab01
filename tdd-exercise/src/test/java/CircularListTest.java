@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import tdd.CircularList;
 import tdd.SimpleCircularList;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,12 +19,13 @@ public class CircularListTest {
     private static final int ONE_ELEMENT = 1;
     private static final int THREE_ELEMENTS = 3;
 
-    private static final Optional<Integer> ZERO_VAlUE = Optional.of(0);
-    private static final Optional<Integer> ONE_VAlUE = Optional.of(1);
-    private static final Optional<Integer> TWO_VAlUE = Optional.of(2);
+    private static final Optional<Integer> ZERO_OPTIONAL_VALUE = Optional.of(0);
+    private static final Optional<Integer> ONE_OPTIONAL_VALUE = Optional.of(1);
+    private static final Optional<Integer> TWO_OPTIONAL_VALUE = Optional.of(2);
+    private static final List<Optional<Integer>> OPTIONAL_VALUE_LIST_IN_ORDER =
+            List.of(ZERO_OPTIONAL_VALUE, ONE_OPTIONAL_VALUE, TWO_OPTIONAL_VALUE);
 
     private CircularList circularList;
-
 
     //TODO: test implementation
     @Disabled
@@ -59,7 +61,7 @@ public class CircularListTest {
 
         assertFalse(this.circularList.isEmpty());
         assertEquals(ONE_ELEMENT, this.circularList.size());
-        assertEquals(ZERO_VAlUE, this.circularList.next());
+        assertEquals(ZERO_OPTIONAL_VALUE, this.circularList.next());
     }
 
     @Test
@@ -68,7 +70,7 @@ public class CircularListTest {
 
         assertFalse(this.circularList.isEmpty());
         assertEquals(ONE_ELEMENT, this.circularList.size());
-        assertEquals(ZERO_VAlUE, this.circularList.previous());
+        assertEquals(ZERO_OPTIONAL_VALUE, this.circularList.previous());
     }
 
     @Test
@@ -83,8 +85,8 @@ public class CircularListTest {
         assertEquals(EMPTY_LIST, this.circularList.size());
     }
 
-    private void addElementsInOrderInList(final int countElements) {
-        for (int i = INITIAL_VALUE; i < countElements; i++)
+    private void addElementsInOrderInList(final int quantity) {
+        for (int i = INITIAL_VALUE; i < quantity; i++)
             this.circularList.add(i);
     }
 
@@ -93,9 +95,8 @@ public class CircularListTest {
         this.addElementsInOrderInList(THREE_ELEMENTS);
 
         assertEquals(THREE_ELEMENTS, this.circularList.size());
-        assertEquals(ZERO_VAlUE, this.circularList.next());
-        assertEquals(ONE_VAlUE, this.circularList.next());
-        assertEquals(TWO_VAlUE, this.circularList.next());
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                assertEquals(optionalInteger, this.circularList.next()));
     }
 
     @Test
@@ -103,9 +104,8 @@ public class CircularListTest {
         this.addElementsInOrderInList(THREE_ELEMENTS);
 
         assertEquals(THREE_ELEMENTS, this.circularList.size());
-        assertEquals(TWO_VAlUE, this.circularList.previous());
-        assertEquals(ONE_VAlUE, this.circularList.previous());
-        assertEquals(ZERO_VAlUE, this.circularList.previous());
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                assertEquals(optionalInteger, this.circularList.previous()));
     }
 
     @Test
@@ -125,10 +125,8 @@ public class CircularListTest {
         this.addElementsInOrderInList(THREE_ELEMENTS);
 
         assertEquals(THREE_ELEMENTS, this.circularList.size());
-        assertEquals(ZERO_VAlUE, this.circularList.next());
-        assertEquals(ONE_VAlUE, this.circularList.next());
-        assertEquals(TWO_VAlUE, this.circularList.next());
-        assertEquals(ZERO_VAlUE, this.circularList.next());
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                assertEquals(optionalInteger, this.circularList.next()));
     }
 
     @Test
@@ -136,10 +134,8 @@ public class CircularListTest {
         this.addElementsInOrderInList(THREE_ELEMENTS);
 
         assertEquals(THREE_ELEMENTS, this.circularList.size());
-        assertEquals(TWO_VAlUE, this.circularList.previous());
-        assertEquals(ONE_VAlUE, this.circularList.previous());
-        assertEquals(ZERO_VAlUE, this.circularList.previous());
-        assertEquals(TWO_VAlUE, this.circularList.previous());
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                assertEquals(optionalInteger, this.circularList.previous()));
     }
 
     @Test
@@ -147,9 +143,9 @@ public class CircularListTest {
         this.addElementsInOrderInList(THREE_ELEMENTS);
 
         assertEquals(THREE_ELEMENTS, this.circularList.size());
-        assertEquals(ZERO_VAlUE, this.circularList.next());
-        assertEquals(ONE_VAlUE, this.circularList.next());
-        assertEquals(ZERO_VAlUE, this.circularList.previous());
+        assertEquals(ZERO_OPTIONAL_VALUE, this.circularList.next());
+        assertEquals(ONE_OPTIONAL_VALUE, this.circularList.next());
+        assertEquals(ZERO_OPTIONAL_VALUE, this.circularList.previous());
     }
-    
+
 }
