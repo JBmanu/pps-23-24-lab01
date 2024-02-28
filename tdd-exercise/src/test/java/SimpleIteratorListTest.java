@@ -4,6 +4,7 @@ import tdd.iteratorList.IteratorList;
 import tdd.iteratorList.SimpleIteratorList;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,6 +18,9 @@ public class SimpleIteratorListTest {
     private static final Optional<Integer> ZERO_OPTIONAL_VALUE = Optional.of(0);
     private static final Optional<Integer> ONE_OPTIONAL_VALUE = Optional.of(1);
     private static final Optional<Integer> TWO_OPTIONAL_VALUE = Optional.of(2);
+
+    private static final List<Optional<Integer>> OPTIONAL_VALUE_LIST_IN_ORDER =
+            List.of(ZERO_OPTIONAL_VALUE, ONE_OPTIONAL_VALUE, TWO_OPTIONAL_VALUE);
 
     private IteratorList iteratorList = new SimpleIteratorList();
 
@@ -72,5 +76,18 @@ public class SimpleIteratorListTest {
     public void testEmptyBackwardIterator() {
         Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
         assertFalse(backwardIterator.hasNext());
+    }
+
+    @Test
+    public void testReadThreeElementOfForwardIterator() {
+        this.addElementsInOrderInList(THREE_ELEMENT);
+        Iterator<Optional<Integer>> fordwardIterator = this.iteratorList.forwardIterator();
+
+        assertTrue(fordwardIterator.hasNext());
+
+        int index = 0;
+        while (fordwardIterator.hasNext()) {
+            assertEquals(OPTIONAL_VALUE_LIST_IN_ORDER.get(index++), fordwardIterator.next());
+        }
     }
 }
