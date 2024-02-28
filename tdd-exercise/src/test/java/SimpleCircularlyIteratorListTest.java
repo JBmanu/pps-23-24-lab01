@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleCircularlyIteratorListTest {
     private static final int EMPTY_LIST = 0;
-    private static final int INITIAL_VALUE = 0;
+    private static final int INITIAL_FOR_VALUE = 0;
     private static final int ONE_ELEMENT = 1;
     private static final int THREE_ELEMENT = 3;
 
@@ -33,7 +33,7 @@ public class SimpleCircularlyIteratorListTest {
     }
 
     private void addElementsInOrderInList(final int quantity) {
-        for (int i = INITIAL_VALUE; i < quantity; i++)
+        for (int i = INITIAL_FOR_VALUE; i < quantity; i++)
             this.iteratorList.add(i);
     }
 
@@ -152,5 +152,15 @@ public class SimpleCircularlyIteratorListTest {
             if (backwardIterator.hasNext())
                 assertEquals(optionalInteger, backwardIterator.next());
         });
+    }
+
+    @Test
+    public void testFeatureCircularlyWithSingleElementInForwardIterator() {
+        this.addElementsInOrderInList(ONE_ELEMENT);
+
+        Iterator<Optional<Integer>> forwardIterator = this.iteratorList.forwardIterator();
+
+        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
+            assertEquals(ZERO_OPTIONAL_VALUE, forwardIterator.next());
     }
 }
