@@ -26,42 +26,35 @@ public class SimpleCircularlyIteratorList implements IteratorList {
 
     @Override
     public Iterator<Optional<Integer>> forwardIterator() {
-        return new Iterator<>() {
-            private static final int INITIAL_INDEX = 0;
-            private final List<Optional<Integer>> forwardElements = new ArrayList<>(SimpleCircularlyIteratorList.this.elements);
-            private int index = INITIAL_INDEX;
-
-            @Override
-            public boolean hasNext() {
-                return !this.forwardElements.isEmpty();
-            }
-
-            @Override
-            public Optional<Integer> next() {
-                return this.forwardElements.get(this.index++ % this.forwardElements.size());
-            }
-        };
+        return new CircularlyIterator(this.elements);
     }
 
     @Override
     public Iterator<Optional<Integer>> backwardIterator() {
         List<Optional<Integer>> reverseElements = new ArrayList<>(this.elements);
         Collections.reverse(reverseElements);
-        return new Iterator<>() {
-            private static final int INITIAL_INDEX = 0;
-            private final List<Optional<Integer>> backwardElements = new ArrayList<>(reverseElements);
-            private int index = INITIAL_INDEX;
+        return new CircularlyIterator(reverseElements);
+    }
 
-            @Override
-            public boolean hasNext() {
-                return !this.backwardElements.isEmpty();
-            }
+    private static class CircularlyIterator implements Iterator<Optional<Integer>> {
+        private static final int INITIAL_INDEX = 0;
+        private final List<Optional<Integer>> iteratorElements;
+        private int index;
 
-            @Override
-            public Optional<Integer> next() {
-                return this.backwardElements.get(this.index++ % this.backwardElements.size());
-            }
-        };
+        public CircularlyIterator(List<Optional<Integer>> list) {
+            this.iteratorElements= new ArrayList<>(list);
+            this.index = INITIAL_INDEX;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !this.iteratorElements.isEmpty();
+        }
+
+        @Override
+        public Optional<Integer> next() {
+            return this.iteratorElements.get(this.index++ % this.iteratorElements.size());
+        }
     }
 
 }

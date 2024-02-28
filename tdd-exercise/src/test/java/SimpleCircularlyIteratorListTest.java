@@ -132,4 +132,5 @@ public class SimpleCircularlyIteratorListTest {
         });
         assertEquals(TWO_OPTIONAL_VALUE, backwardIterator.next());
     }
+
 }
