@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import tdd.iteratorList.IteratorList;
 import tdd.iteratorList.SimpleIteratorList;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,6 +15,8 @@ public class SimpleIteratorListTest {
     private static final int THREE_ELEMENT = 3;
 
     private static final Optional<Integer> ZERO_OPTIONAL_VALUE = Optional.of(0);
+    private static final Optional<Integer> ONE_OPTIONAL_VALUE = Optional.of(1);
+    private static final Optional<Integer> TWO_OPTIONAL_VALUE = Optional.of(2);
 
     private IteratorList iteratorList = new SimpleIteratorList();
 
@@ -59,4 +62,9 @@ public class SimpleIteratorListTest {
         assertNotEquals(null, this.iteratorList.backwardIterator());
     }
 
+    @Test
+    public void testEmptyForwardIterator() {
+        Iterator<Optional<Integer>> forwardIterator = this.iteratorList.forwardIterator();
+        assertFalse(forwardIterator.hasNext());
+    }
 }
