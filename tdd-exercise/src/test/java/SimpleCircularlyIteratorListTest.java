@@ -133,4 +133,24 @@ public class SimpleCircularlyIteratorListTest {
         assertEquals(TWO_OPTIONAL_VALUE, backwardIterator.next());
     }
 
+    @Test
+    public void testTogetherForwardAndBackwardIterators() {
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                optionalInteger.ifPresent(integer -> this.iteratorList.add(integer)));
+
+        final Iterator<Optional<Integer>> fordwardIterator = this.iteratorList.forwardIterator();
+        final Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
+        final List<Optional<Integer>> reverseOptionalValueListInOrder = new ArrayList<>(OPTIONAL_VALUE_LIST_IN_ORDER);
+
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger -> {
+            if (fordwardIterator.hasNext())
+                assertEquals(optionalInteger, fordwardIterator.next());
+        });
+
+        Collections.reverse(reverseOptionalValueListInOrder);
+        reverseOptionalValueListInOrder.forEach(optionalInteger -> {
+            if (backwardIterator.hasNext())
+                assertEquals(optionalInteger, backwardIterator.next());
+        });
+    }
 }
