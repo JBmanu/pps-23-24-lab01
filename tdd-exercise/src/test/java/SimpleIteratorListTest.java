@@ -67,4 +67,10 @@ public class SimpleIteratorListTest {
         Iterator<Optional<Integer>> forwardIterator = this.iteratorList.forwardIterator();
         assertFalse(forwardIterator.hasNext());
     }
+
+    @Test
+    public void testEmptyBackwardIterator() {
+        Iterator<Optional<Integer>> backwardIterator = this.iteratorList.backwardIterator();
+        assertFalse(backwardIterator.hasNext());
+    }
 }
