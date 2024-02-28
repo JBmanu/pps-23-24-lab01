@@ -1,13 +1,13 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tdd.iteratorList.IteratorList;
-import tdd.iteratorList.SimpleIteratorList;
+import tdd.iteratorList.SimpleCircularlyIteratorList;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SimpleIteratorListTest {
+public class SimpleCircularlyIteratorListTest {
     private static final int EMPTY_LIST = 0;
     private static final int INITIAL_VALUE = 0;
     private static final int ONE_ELEMENT = 1;
@@ -19,11 +19,11 @@ public class SimpleIteratorListTest {
     private static final List<Optional<Integer>> OPTIONAL_VALUE_LIST_IN_ORDER =
             List.of(ZERO_OPTIONAL_VALUE, ONE_OPTIONAL_VALUE, TWO_OPTIONAL_VALUE);
 
-    private IteratorList iteratorList = new SimpleIteratorList();
+    private IteratorList iteratorList = new SimpleCircularlyIteratorList();
 
     @BeforeEach
     public void canCreateIteratorList() {
-        this.iteratorList = new SimpleIteratorList();
+        this.iteratorList = new SimpleCircularlyIteratorList();
     }
 
     @Test
@@ -103,4 +103,17 @@ public class SimpleIteratorListTest {
         });
     }
 
+    @Test
+    public void testFeatureCircularlyForwardIterator() {
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger ->
+                optionalInteger.ifPresent(integer -> this.iteratorList.add(integer)));
+
+        final Iterator<Optional<Integer>> fordwardIterator = this.iteratorList.forwardIterator();
+
+        OPTIONAL_VALUE_LIST_IN_ORDER.forEach(optionalInteger -> {
+            if (fordwardIterator.hasNext())
+                assertEquals(optionalInteger, fordwardIterator.next());
+        });
+        assertEquals(ZERO_OPTIONAL_VALUE, fordwardIterator.next());
+    }
 }
