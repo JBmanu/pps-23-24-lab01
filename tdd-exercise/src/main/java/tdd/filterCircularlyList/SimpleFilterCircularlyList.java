@@ -3,17 +3,21 @@ package tdd.filterCircularlyList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class SimpleFilterCircularlyList implements FilterCircularlyList {
-    private final List<Optional<Integer>> elements;
+    public static final int INITIAL_INDEX_VALUE = 0;
+    private final List<Integer> elements;
+    private int index;
 
     public SimpleFilterCircularlyList() {
         this.elements = new ArrayList<>();
+        this.index = INITIAL_INDEX_VALUE;
     }
 
     @Override
     public void add(int element) {
-        this.elements.add(Optional.of(element));
+        this.elements.add(element);
     }
 
     @Override
@@ -27,7 +31,7 @@ public class SimpleFilterCircularlyList implements FilterCircularlyList {
     }
 
     @Override
-    public Optional<Integer> filterNext(int element) {
-        return Optional.empty();
+    public Optional<Integer> filterNext(final Predicate<Integer> predicate) {
+        return this.elements.stream().filter(predicate).findFirst();
     }
 }

@@ -3,6 +3,9 @@ import org.junit.jupiter.api.Test;
 import tdd.filterCircularlyList.FilterCircularlyList;
 import tdd.filterCircularlyList.SimpleFilterCircularlyList;
 
+import java.util.Optional;
+import java.util.function.Predicate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FilterCircularlyListTest {
@@ -43,9 +46,13 @@ public class FilterCircularlyListTest {
         assertEquals(THREE_ELEMENT, this.filterCircularlyList.size());
     }
 
+    @Test
+    public void testFilterNextThanContainInList() {
+        this.addElementInOrderInList(THREE_ELEMENT);
+        final Predicate<Integer> predicate = element -> element.equals(0);
 
-
-
+        assertEquals(Optional.of(0), this.filterCircularlyList.filterNext(predicate));
+    }
 
 
 

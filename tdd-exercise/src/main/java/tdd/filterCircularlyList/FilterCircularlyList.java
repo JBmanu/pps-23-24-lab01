@@ -1,6 +1,7 @@
 package tdd.filterCircularlyList;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public interface FilterCircularlyList {
 
@@ -10,5 +11,5 @@ public interface FilterCircularlyList {
 
     boolean isEmpty();
 
-    Optional<Integer> filterNext(final int element);
+    Optional<Integer> filterNext(final Predicate<Integer> predicate);
 }
