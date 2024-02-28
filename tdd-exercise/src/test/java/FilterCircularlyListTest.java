@@ -73,12 +73,8 @@ public class FilterCircularlyListTest {
         final int trueMultiple = 0;
         final Predicate<Integer> predicate = element -> (element % multiple) == trueMultiple;
 
-        assertEquals(Optional.of(0), this.filterCircularlyList.filterNext(predicate));
-        assertEquals(Optional.of(2), this.filterCircularlyList.filterNext(predicate));
-        assertEquals(Optional.of(4), this.filterCircularlyList.filterNext(predicate));
-        assertEquals(Optional.of(6), this.filterCircularlyList.filterNext(predicate));
+        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
+            assertEquals(Optional.of(i * multiple), this.filterCircularlyList.filterNext(predicate));
     }
-
-
 
 }
