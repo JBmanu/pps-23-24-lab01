@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tdd.iteratorList.IteratorList;
-import tdd.iteratorList.SimpleCircularlyIteratorList;
+import tdd.cicularlyIteratorList.CircularlyIteratorList;
+import tdd.cicularlyIteratorList.SimpleCircularlyIteratorList;
 
 import java.util.*;
 
@@ -19,7 +19,7 @@ public class SimpleCircularlyIteratorListTest {
     private static final List<Optional<Integer>> OPTIONAL_VALUE_LIST_IN_ORDER =
             List.of(ZERO_OPTIONAL_VALUE, ONE_OPTIONAL_VALUE, TWO_OPTIONAL_VALUE);
 
-    private IteratorList iteratorList = new SimpleCircularlyIteratorList();
+    private CircularlyIteratorList iteratorList = new SimpleCircularlyIteratorList();
 
     @BeforeEach
     public void canCreateIteratorList() {

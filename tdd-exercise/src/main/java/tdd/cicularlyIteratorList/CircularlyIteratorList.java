@@ -1,9 +1,9 @@
-package tdd.iteratorList;
+package tdd.cicularlyIteratorList;
 
 import java.util.Iterator;
 import java.util.Optional;
 
-public interface IteratorList {
+public interface CircularlyIteratorList {
 
     void add (final int element);
 

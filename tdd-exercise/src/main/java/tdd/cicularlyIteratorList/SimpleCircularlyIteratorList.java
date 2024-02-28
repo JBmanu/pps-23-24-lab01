@@ -1,8 +1,8 @@
-package tdd.iteratorList;
+package tdd.cicularlyIteratorList;
 
 import java.util.*;
 
-public class SimpleCircularlyIteratorList implements IteratorList {
+public class SimpleCircularlyIteratorList implements CircularlyIteratorList {
     private final List<Optional<Integer>> elements;
 
     public SimpleCircularlyIteratorList() {
