@@ -36,6 +36,6 @@ public class SimpleIteratorList implements IteratorList {
 
     @Override
     public Iterator<Optional<Integer>> backwardIterator() {
-        return null;
+        return this.elements.stream().iterator();
     }
 }

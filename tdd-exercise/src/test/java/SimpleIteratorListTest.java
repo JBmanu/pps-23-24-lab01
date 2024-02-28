@@ -54,4 +54,9 @@ public class SimpleIteratorListTest {
         assertNotEquals(null, this.iteratorList.forwardIterator());
     }
 
+    @Test
+    public void testCanCreateBackwardIterator() {
+        assertNotEquals(null, this.iteratorList.backwardIterator());
+    }
+
 }
