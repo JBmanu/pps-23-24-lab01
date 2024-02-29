@@ -1,6 +1,10 @@
 package tdd.iteratorCicularList;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class SimpleIteratorCircularList implements IteratorCircularList {
@@ -44,4 +48,3 @@ public class SimpleIteratorCircularList implements IteratorCircularList {
     }
 
 }
-
