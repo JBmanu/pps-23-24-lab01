@@ -58,12 +58,12 @@ public class IteratorCircularListTest {
 
     @Test
     public void testCanCreateForwardIterator() {
-        assertNotEquals(null, this.iteratorList.forwardIterator());
+        assertNotNull(this.iteratorList.forwardIterator());
     }
 
     @Test
     public void testCanCreateBackwardIterator() {
-        assertNotEquals(null, this.iteratorList.backwardIterator());
+        assertNotNull(this.iteratorList.backwardIterator());
     }
 
     @Test
