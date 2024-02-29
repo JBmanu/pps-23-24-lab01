@@ -64,7 +64,7 @@ public class CircularListTest {
 
     @Test
     public void testAddElement() {
-        this.circularList.add(ONE_ELEMENT);
+        this.addElementsInOrderInList(ONE_ELEMENT);
 
         assertFalse(this.circularList.isEmpty());
         assertEquals(ONE_ELEMENT, this.circularList.size());
@@ -72,7 +72,7 @@ public class CircularListTest {
 
     @Test
     public void testAddThreeElement() {
-        this.circularList.add(THREE_ELEMENTS);
+        this.addElementsInOrderInList(THREE_ELEMENTS);
 
         assertFalse(this.circularList.isEmpty());
         assertEquals(THREE_ELEMENTS, this.circularList.size());
@@ -149,5 +149,4 @@ public class CircularListTest {
         assertEquals(Optional.of(ZERO_VALUE), this.circularList.previous());
         assertEquals(Optional.of(TWO_VALUE), this.circularList.previous());
     }
-
 }
