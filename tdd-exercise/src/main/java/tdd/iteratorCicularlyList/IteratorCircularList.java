@@ -2,7 +2,7 @@ package tdd.iteratorCicularlyList;
 
 import java.util.Iterator;
 
-public interface IteratorCircularlyList {
+public interface IteratorCircularList {
 
     void add (final int element);
 

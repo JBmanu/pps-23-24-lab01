@@ -2,10 +2,10 @@ package tdd.iteratorCicularlyList;
 
 import java.util.*;
 
-public class SimpleIteratorCircularlyList implements IteratorCircularlyList {
+public class SimpleIteratorCircularList implements IteratorCircularList {
     private final List<Integer> elements;
 
-    public SimpleIteratorCircularlyList() {
+    public SimpleIteratorCircularList() {
         this.elements = new ArrayList<>();
     }
 

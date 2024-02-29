@@ -1,13 +1,14 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tdd.iteratorCicularlyList.IteratorCircularlyList;
-import tdd.iteratorCicularlyList.SimpleIteratorCircularlyList;
+import tdd.iteratorCicularlyList.IteratorCircularList;
+import tdd.iteratorCicularlyList.SimpleIteratorCircularList;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class IteratorCircularlyListTest {
+public class IteratorCircularListTest {
     private static final int EMPTY_LIST = 0;
     private static final int INITIAL_VALUE_OF_FOR = 0;
     private static final int ONE_ELEMENT = 1;
@@ -18,12 +19,14 @@ public class IteratorCircularlyListTest {
     private static final int TWO_VALUE = 2;
     private static final List<Integer> VALUES_LIST_IN_ORDER =
             List.of(ZERO_VALUE, ONE_VALUE, TWO_VALUE);
+    private static final List<Integer> REVERSE_VALUES_LIST_IN_ORDER =
+            List.of(TWO_VALUE, ONE_VALUE, ZERO_VALUE);
 
-    private IteratorCircularlyList iteratorList = new SimpleIteratorCircularlyList();
+    private IteratorCircularList iteratorList = new SimpleIteratorCircularList();
 
     @BeforeEach
     public void canCreateIteratorList() {
-        this.iteratorList = new SimpleIteratorCircularlyList();
+        this.iteratorList = new SimpleIteratorCircularList();
     }
 
     @Test
@@ -78,7 +81,6 @@ public class IteratorCircularlyListTest {
     @Test
     public void testReadThreeElementOfForwardIterator() {
         VALUES_LIST_IN_ORDER.forEach(value -> this.iteratorList.add(value));
-
         final Iterator<Integer> fordwardIterator = this.iteratorList.forwardIterator();
 
         VALUES_LIST_IN_ORDER.forEach(optionalInteger -> {
@@ -90,12 +92,9 @@ public class IteratorCircularlyListTest {
     @Test
     public void testReadThreeElementOfBackwardIterator() {
         VALUES_LIST_IN_ORDER.forEach(value -> this.iteratorList.add(value));
-
         final Iterator<Integer> backwardIterator = this.iteratorList.backwardIterator();
-        final List<Integer> reverseOptionalValueListInOrder = new ArrayList<>(VALUES_LIST_IN_ORDER);
 
-        Collections.reverse(reverseOptionalValueListInOrder);
-        reverseOptionalValueListInOrder.forEach(optionalInteger -> {
+        REVERSE_VALUES_LIST_IN_ORDER.forEach(optionalInteger -> {
             if (backwardIterator.hasNext())
                 assertEquals(optionalInteger, backwardIterator.next());
         });
@@ -104,7 +103,6 @@ public class IteratorCircularlyListTest {
     @Test
     public void testFeatureCircularlyForwardIterator() {
         VALUES_LIST_IN_ORDER.forEach(value -> this.iteratorList.add(value));
-
         final Iterator<Integer> fordwardIterator = this.iteratorList.forwardIterator();
 
         VALUES_LIST_IN_ORDER.forEach(optionalInteger -> {
@@ -117,12 +115,9 @@ public class IteratorCircularlyListTest {
     @Test
     public void testFeatureCircularlyBackwardIterator() {
         VALUES_LIST_IN_ORDER.forEach(value -> this.iteratorList.add(value));
-
         final Iterator<Integer> backwardIterator = this.iteratorList.backwardIterator();
-        final List<Integer> reverseOptionalValueListInOrder = new ArrayList<>(VALUES_LIST_IN_ORDER);
 
-        Collections.reverse(reverseOptionalValueListInOrder);
-        reverseOptionalValueListInOrder.forEach(optionalInteger -> {
+        REVERSE_VALUES_LIST_IN_ORDER.forEach(optionalInteger -> {
             if (backwardIterator.hasNext())
                 assertEquals(optionalInteger, backwardIterator.next());
         });
@@ -135,15 +130,13 @@ public class IteratorCircularlyListTest {
 
         final Iterator<Integer> fordwardIterator = this.iteratorList.forwardIterator();
         final Iterator<Integer> backwardIterator = this.iteratorList.backwardIterator();
-        final List<Integer> reverseOptionalValueListInOrder = new ArrayList<>(VALUES_LIST_IN_ORDER);
 
         VALUES_LIST_IN_ORDER.forEach(optionalInteger -> {
             if (fordwardIterator.hasNext())
                 assertEquals(optionalInteger, fordwardIterator.next());
         });
 
-        Collections.reverse(reverseOptionalValueListInOrder);
-        reverseOptionalValueListInOrder.forEach(optionalInteger -> {
+        REVERSE_VALUES_LIST_IN_ORDER.forEach(optionalInteger -> {
             if (backwardIterator.hasNext())
                 assertEquals(optionalInteger, backwardIterator.next());
         });
@@ -152,7 +145,6 @@ public class IteratorCircularlyListTest {
     @Test
     public void testFeatureCircularlyWithSingleElementInForwardIterator() {
         this.addElementsInOrderInList(ONE_ELEMENT);
-
         final Iterator<Integer> forwardIterator = this.iteratorList.forwardIterator();
 
         for (int i = INITIAL_VALUE_OF_FOR; i < THREE_ELEMENT; i++)
@@ -162,7 +154,6 @@ public class IteratorCircularlyListTest {
     @Test
     public void testFeatureCircularlyWithSingleElementInBackwardIterator() {
         this.addElementsInOrderInList(ONE_ELEMENT);
-
         final Iterator<Integer> forwardIterator = this.iteratorList.backwardIterator();
 
         for (int i = INITIAL_VALUE_OF_FOR; i < THREE_ELEMENT; i++)
