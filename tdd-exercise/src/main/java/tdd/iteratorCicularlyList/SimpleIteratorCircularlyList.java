@@ -3,7 +3,7 @@ package tdd.iteratorCicularlyList;
 import java.util.*;
 
 public class SimpleIteratorCircularlyList implements IteratorCircularlyList {
-    private final List<Optional<Integer>> elements;
+    private final List<Integer> elements;
 
     public SimpleIteratorCircularlyList() {
         this.elements = new ArrayList<>();
@@ -11,7 +11,7 @@ public class SimpleIteratorCircularlyList implements IteratorCircularlyList {
 
     @Override
     public void add(int element) {
-        this.elements.add(Optional.of(element));
+        this.elements.add(element);
     }
 
     @Override
@@ -25,23 +25,23 @@ public class SimpleIteratorCircularlyList implements IteratorCircularlyList {
     }
 
     @Override
-    public Iterator<Optional<Integer>> forwardIterator() {
+    public Iterator<Integer> forwardIterator() {
         return new CircularlyIterator(this.elements);
     }
 
     @Override
-    public Iterator<Optional<Integer>> backwardIterator() {
-        List<Optional<Integer>> reverseElements = new ArrayList<>(this.elements);
+    public Iterator<Integer> backwardIterator() {
+        List<Integer> reverseElements = new ArrayList<>(this.elements);
         Collections.reverse(reverseElements);
         return new CircularlyIterator(reverseElements);
     }
 
-    private static class CircularlyIterator implements Iterator<Optional<Integer>> {
+    private static class CircularlyIterator implements Iterator<Integer> {
         private static final int INITIAL_INDEX = 0;
-        private final List<Optional<Integer>> iteratorElements;
+        private final List<Integer> iteratorElements;
         private int index;
 
-        public CircularlyIterator(List<Optional<Integer>> list) {
+        public CircularlyIterator(List<Integer> list) {
             this.iteratorElements= new ArrayList<>(list);
             this.index = INITIAL_INDEX;
         }
@@ -52,7 +52,7 @@ public class SimpleIteratorCircularlyList implements IteratorCircularlyList {
         }
 
         @Override
-        public Optional<Integer> next() {
+        public Integer next() {
             return this.iteratorElements.get(this.index++ % this.iteratorElements.size());
         }
     }

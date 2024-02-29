@@ -1,7 +1,6 @@
 package tdd.iteratorCicularlyList;
 
 import java.util.Iterator;
-import java.util.Optional;
 
 public interface IteratorCircularlyList {
 
@@ -11,9 +10,9 @@ public interface IteratorCircularlyList {
 
     boolean isEmpty();
 
-    Iterator<Optional<Integer>> forwardIterator();
+    Iterator<Integer> forwardIterator();
 
-    Iterator<Optional<Integer>> backwardIterator();
+    Iterator<Integer> backwardIterator();
 
 
 }
