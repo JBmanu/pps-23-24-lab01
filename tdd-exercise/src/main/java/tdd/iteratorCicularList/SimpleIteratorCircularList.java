@@ -1,6 +1,7 @@
 package tdd.iteratorCicularList;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class SimpleIteratorCircularList implements IteratorCircularList {
     private final List<Integer> elements;
@@ -24,37 +25,22 @@ public class SimpleIteratorCircularList implements IteratorCircularList {
         return this.elements.isEmpty();
     }
 
+    private Iterator<Integer> infiniteFromList(List<Integer> list) {
+        if (list.isEmpty()) return Collections.emptyIterator();
+        return Stream.generate(() -> Collections.unmodifiableList(list))
+                .flatMap(Collection::stream).iterator();
+    }
+
     @Override
     public Iterator<Integer> forwardIterator() {
-        return new CircularlyIterator(this.elements);
+        return this.infiniteFromList(this.elements);
     }
 
     @Override
     public Iterator<Integer> backwardIterator() {
         List<Integer> reverseElements = new ArrayList<>(this.elements);
         Collections.reverse(reverseElements);
-        return new CircularlyIterator(reverseElements);
-    }
-
-    private static class CircularlyIterator implements Iterator<Integer> {
-        private static final int INITIAL_INDEX = 0;
-        private final List<Integer> iteratorElements;
-        private int index;
-
-        public CircularlyIterator(List<Integer> list) {
-            this.iteratorElements= new ArrayList<>(list);
-            this.index = INITIAL_INDEX;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return !this.iteratorElements.isEmpty();
-        }
-
-        @Override
-        public Integer next() {
-            return this.iteratorElements.get(this.index++ % this.iteratorElements.size());
-        }
+        return this.infiniteFromList(reverseElements);
     }
 
 }

@@ -2,6 +2,7 @@ package tdd.filterCircularList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -39,7 +40,8 @@ public class SimpleFilterCircularList implements FilterCircularList {
 
     @Override
     public Optional<Integer> filterNext(final Predicate<Integer> predicate) {
-        if (predicate == null) throw new IllegalArgumentException("Predicate cannot be null");
+//        Optional.ofNullable(predicate).orElseThrow(IllegalArgumentException::new);
+        if (Objects.isNull(predicate)) throw new IllegalArgumentException();
 
         this.resetIndexIfLastPredicateIsDifferent(predicate);
         List<Integer> list = this.elements.stream().filter(predicate).toList();
