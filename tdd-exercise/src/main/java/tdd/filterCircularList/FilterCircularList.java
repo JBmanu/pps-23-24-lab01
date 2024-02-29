@@ -1,4 +1,4 @@
-package tdd.filterCircularlyList;
+package tdd.filterCircularList;
 
 import java.util.Optional;
 import java.util.function.Predicate;

@@ -1,4 +1,4 @@
-package tdd.iteratorCicularlyList;
+package tdd.iteratorCicularList;
 
 import java.util.Iterator;
 

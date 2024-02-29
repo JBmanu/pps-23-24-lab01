@@ -1,4 +1,4 @@
-package tdd.filterCircularlyList;
+package tdd.filterCircularList;
 
 import java.util.ArrayList;
 import java.util.List;

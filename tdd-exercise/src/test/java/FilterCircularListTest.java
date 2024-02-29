@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tdd.filterCircularlyList.FilterCircularList;
-import tdd.filterCircularlyList.SimpleFilterCircularList;
+import tdd.filterCircularList.FilterCircularList;
+import tdd.filterCircularList.SimpleFilterCircularList;
 
 import java.util.Optional;
 import java.util.function.Predicate;
