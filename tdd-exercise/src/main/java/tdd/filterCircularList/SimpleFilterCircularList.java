@@ -40,13 +40,10 @@ public class SimpleFilterCircularList implements FilterCircularList {
 
     @Override
     public Optional<Integer> filterNext(final Predicate<Integer> predicate) {
-//        Optional.ofNullable(predicate).orElseThrow(IllegalArgumentException::new);
         if (Objects.isNull(predicate)) throw new IllegalArgumentException();
 
         this.resetIndexIfLastPredicateIsDifferent(predicate);
         List<Integer> list = this.elements.stream().filter(predicate).toList();
         return list.isEmpty() ? Optional.empty() : Optional.of(list.get(this.index++ % list.size()));
     }
-
-
 }

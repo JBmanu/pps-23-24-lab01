@@ -29,22 +29,22 @@ public class SimpleIteratorCircularList implements IteratorCircularList {
         return this.elements.isEmpty();
     }
 
-    private Iterator<Integer> infiniteFromList(List<Integer> list) {
+    private Iterator<Integer> infiniteIteratorFromList(List<Integer> list) {
         if (list.isEmpty()) return Collections.emptyIterator();
         return Stream.generate(() -> Collections.unmodifiableList(list))
-                .flatMap(Collection::stream).iterator();
+                .flatMap(Collection::stream)
+                .iterator();
     }
 
     @Override
     public Iterator<Integer> forwardIterator() {
-        return this.infiniteFromList(this.elements);
+        return this.infiniteIteratorFromList(this.elements);
     }
 
     @Override
     public Iterator<Integer> backwardIterator() {
         List<Integer> reverseElements = new ArrayList<>(this.elements);
         Collections.reverse(reverseElements);
-        return this.infiniteFromList(reverseElements);
+        return this.infiniteIteratorFromList(reverseElements);
     }
-
 }
