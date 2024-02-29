@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class SimpleFilterCircularlyList implements FilterCircularlyList {
+public class SimpleFilterCircularList implements FilterCircularList {
     public static final int INITIAL_INDEX_VALUE = 0;
     private Predicate<Integer> lastPredicate;
     private final List<Integer> elements;
     private int index;
 
-    public SimpleFilterCircularlyList() {
+    public SimpleFilterCircularList() {
         this.elements = new ArrayList<>();
         this.index = INITIAL_INDEX_VALUE;
     }

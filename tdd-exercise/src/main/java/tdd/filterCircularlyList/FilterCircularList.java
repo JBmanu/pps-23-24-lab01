@@ -3,7 +3,7 @@ package tdd.filterCircularlyList;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public interface FilterCircularlyList {
+public interface FilterCircularList {
 
     void add(final int element);
 
