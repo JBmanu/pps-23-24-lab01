@@ -115,4 +115,12 @@ public class FilterCircularListTest {
         assertEquals(Optional.of(ZERO_VALUE), this.filterCircularList.filterNext(firstPredicate));
         assertEquals(Optional.of(ZERO_VALUE), this.filterCircularList.filterNext(secondPredicate));
     }
+
+    @Test
+    public void testPassNullPredicate() {
+        this.addElementInOrderInList(THREE_ELEMENT);
+
+        assertThrows(IllegalArgumentException.class, () ->
+                this.filterCircularList.filterNext(null));
+    }
 }

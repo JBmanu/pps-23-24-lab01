@@ -39,6 +39,8 @@ public class SimpleFilterCircularList implements FilterCircularList {
 
     @Override
     public Optional<Integer> filterNext(final Predicate<Integer> predicate) {
+        if (predicate == null) throw new IllegalArgumentException("Predicate cannot be null");
+
         this.resetIndexIfLastPredicateIsDifferent(predicate);
         List<Integer> list = this.elements.stream().filter(predicate).toList();
         return list.isEmpty() ? Optional.empty() : Optional.of(list.get(this.index++ % list.size()));
