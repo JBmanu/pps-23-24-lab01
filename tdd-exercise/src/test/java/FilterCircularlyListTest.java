@@ -10,10 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FilterCircularlyListTest {
     private static final int EMPTY_LIST = 0;
-    private static final int INITIAL_FOR_VALUE = 0;
+    private static final int INITIAL_VALUE_OF_FOR = 0;
     private static final int ONE_ELEMENT = 1;
     private static final int THREE_ELEMENT = 3;
     private static final int EIGHT_ELEMENT = 8;
+    private static final int ZERO_VALUE = 0;
 
     private FilterCircularlyList filterCircularlyList;
 
@@ -29,7 +30,7 @@ public class FilterCircularlyListTest {
     }
 
     private void addElementInOrderInList(final int quantity) {
-        for (int i = INITIAL_FOR_VALUE; i < quantity; i++)
+        for (int i = INITIAL_VALUE_OF_FOR; i < quantity; i++)
             this.filterCircularlyList.add(i);
     }
 
@@ -73,7 +74,7 @@ public class FilterCircularlyListTest {
         final int trueMultiple = 0;
         final Predicate<Integer> predicate = element -> (element % multiple) == trueMultiple;
 
-        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
+        for (int i = INITIAL_VALUE_OF_FOR; i < THREE_ELEMENT; i++)
             assertEquals(Optional.of(i * multiple), this.filterCircularlyList.filterNext(predicate));
     }
 
@@ -85,17 +86,16 @@ public class FilterCircularlyListTest {
         final int trueMultiple = 0;
         final Predicate<Integer> firstPredicate = element -> (element % multipleOfTwo) == trueMultiple;
 
-        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++)
+        for (int i = INITIAL_VALUE_OF_FOR; i < THREE_ELEMENT; i++)
             assertEquals(Optional.of(i * multipleOfTwo),
                     this.filterCircularlyList.filterNext(firstPredicate));
 
         final int multipleOfThree = 3;
         final Predicate<Integer> secondPredicate = element -> (element % multipleOfThree) == trueMultiple;
 
-        for (int i = INITIAL_FOR_VALUE; i < THREE_ELEMENT; i++) {
+        for (int i = INITIAL_VALUE_OF_FOR; i < THREE_ELEMENT; i++) {
             assertEquals(Optional.of(i * multipleOfThree),
                     this.filterCircularlyList.filterNext(secondPredicate));
-            System.out.println("INDEX: " + i);
         }
     }
 
@@ -110,8 +110,8 @@ public class FilterCircularlyListTest {
         final int multipleOfThree = 3;
         final Predicate<Integer> secondPredicate = element -> (element % multipleOfThree) == trueMultiple;
 
-        assertEquals(Optional.of(0), this.filterCircularlyList.filterNext(firstPredicate));
-        assertEquals(Optional.of(0), this.filterCircularlyList.filterNext(secondPredicate));
+        assertEquals(Optional.of(ZERO_VALUE), this.filterCircularlyList.filterNext(firstPredicate));
+        assertEquals(Optional.of(ZERO_VALUE), this.filterCircularlyList.filterNext(secondPredicate));
     }
 
 }

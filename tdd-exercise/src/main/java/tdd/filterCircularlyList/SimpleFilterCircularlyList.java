@@ -7,12 +7,11 @@ import java.util.function.Predicate;
 
 public class SimpleFilterCircularlyList implements FilterCircularlyList {
     public static final int INITIAL_INDEX_VALUE = 0;
-    private Optional<Predicate<Integer>> lastPredicate;
+    private Predicate<Integer> lastPredicate;
     private final List<Integer> elements;
     private int index;
 
     public SimpleFilterCircularlyList() {
-        this.lastPredicate = Optional.empty();
         this.elements = new ArrayList<>();
         this.index = INITIAL_INDEX_VALUE;
     }
@@ -32,12 +31,10 @@ public class SimpleFilterCircularlyList implements FilterCircularlyList {
         return this.elements.isEmpty();
     }
 
-    private void resetIndexIfLastPredicateIsDifferent(Predicate<Integer> predicate) {
-        final Optional<Predicate<Integer>> optionalPredicate = Optional.of(predicate);
-
-        if (this.lastPredicate.equals(optionalPredicate)) return;
-        this.lastPredicate = optionalPredicate;
+    private void resetIndexIfLastPredicateIsDifferent(final Predicate<Integer> predicate) {
+        if (predicate.equals(this.lastPredicate)) return;
         this.index = INITIAL_INDEX_VALUE;
+        this.lastPredicate = predicate;
     }
 
     @Override
