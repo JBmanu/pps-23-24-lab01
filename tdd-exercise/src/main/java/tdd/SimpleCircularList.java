@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public class SimpleCircularList implements CircularList {
     private static final int EMPTY_LIST = 0;
+    private static final int ZERO_VALUE = 0;
     private static final int START_INDEX = -1;
 
     private final List<Integer> elements;
@@ -43,7 +44,7 @@ public class SimpleCircularList implements CircularList {
     public Optional<Integer> previous() {
         if (this.size() == EMPTY_LIST) return Optional.empty();
 
-        if (this.index == START_INDEX) this.index = this.size();
+        if (this.index == START_INDEX || this.index == ZERO_VALUE) this.index = this.size();
         this.index = --this.index % this.size();
         return Optional.of(this.elements.get(this.index));
     }
