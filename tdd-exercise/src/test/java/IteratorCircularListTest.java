@@ -17,7 +17,7 @@ public class IteratorCircularListTest {
     private static final int ZERO_VALUE = 0;
     private static final int ONE_VALUE = 1;
     private static final int TWO_VALUE = 2;
-    private static final List<Integer> VALUES_LIST_IN_ORDER = IntStream.range(ZERO_VALUE, THREE_ELEMENT).boxed().toList();
+    private static final List<Integer> VALUES_LIST_IN_ORDER = IntStream.rangeClosed(ZERO_VALUE, TWO_VALUE).boxed().toList();
     private static final List<Integer> REVERSE_VALUES_LIST_IN_ORDER = IntStream.iterate(TWO_VALUE, i -> i - ONE_VALUE)
             .limit(VALUES_LIST_IN_ORDER.size())
             .boxed()

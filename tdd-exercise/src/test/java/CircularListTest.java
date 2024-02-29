@@ -7,6 +7,7 @@ import tdd.SimpleCircularList;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,17 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CircularListTest {
     private static final int EMPTY_LIST = 0;
-    private static final int INITIAL_VALUE_OF_FOR = 0;
     private static final int ONE_ELEMENT = 1;
     private static final int THREE_ELEMENTS = 3;
 
     private static final int ZERO_VALUE = 0;
     private static final int ONE_VALUE = 1;
     private static final int TWO_VALUE = 2;
-    private static final List<Integer> VALUES_LIST_IN_ORDER =
-            List.of(ZERO_VALUE, ONE_VALUE, TWO_VALUE);
-    private static final List<Integer> REVERSE_VALUES_LIST_IN_ORDER =
-            List.of(TWO_VALUE, ONE_VALUE, ZERO_VALUE);
+    private static final List<Integer> VALUES_LIST_IN_ORDER = IntStream.rangeClosed(ZERO_VALUE, TWO_VALUE).boxed().toList();
+    private static final List<Integer> REVERSE_VALUES_LIST_IN_ORDER = IntStream.iterate(TWO_VALUE, i -> i - ONE_VALUE)
+            .limit(VALUES_LIST_IN_ORDER.size())
+            .boxed()
+            .toList();
 
     private CircularList circularList;
 
@@ -58,8 +59,7 @@ public class CircularListTest {
     }
 
     private void addElementsInOrderInList(final int quantity) {
-        for (int i = INITIAL_VALUE_OF_FOR; i < quantity; i++)
-            this.circularList.add(i);
+        IntStream.range(ZERO_VALUE, quantity).forEach(value -> this.circularList.add(value));
     }
 
     @Test
